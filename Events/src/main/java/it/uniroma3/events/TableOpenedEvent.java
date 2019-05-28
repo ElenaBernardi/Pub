@@ -1,7 +1,6 @@
 package it.uniroma3.events;
 
 public class TableOpenedEvent extends BaseEvent<String>{
-    private String id;
     private Long tableNumber;
     private String waiter;
     private Boolean isOpen;
@@ -11,10 +10,6 @@ public class TableOpenedEvent extends BaseEvent<String>{
         this.tableNumber = tableNumber;
         this.waiter = waiter;
         this.isOpen = true;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Long getTableNumber() {

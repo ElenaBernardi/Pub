@@ -1,5 +1,22 @@
 version: '3'
 services:
+  ###    POSTGRES    ####
+  postgres:
+    build: Postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+#  mysql:
+#    build: MySQL
+#    ports:
+#      - 3306:3306
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=rootpassword
+#      - MYSQL_USER=mysqluser
+#      - MYSQL_PASSWORD=mysqlpw
   axonserver:
     image: axoniq/axonserver
     ports:
@@ -14,4 +31,20 @@ services:
       - 8082:8080
     links:
       - axonserver
+  opentable:
+    build: OpenTable
+    ports:
+      - 8084:8080
+    links:
+      - axonserver
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres/orders
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql/orders
+#      SPRING_DATASOURCE_USERNAME: mysqluser
+#      SPRING_DATASOURCE_PASSWORD: mysqlpw
+#      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+
 

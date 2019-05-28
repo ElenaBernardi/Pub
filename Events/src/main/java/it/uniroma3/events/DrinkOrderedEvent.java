@@ -1,10 +1,8 @@
 package it.uniroma3.events;
 
-import it.uniroma3.aggregates.Status;
 
 public class DrinkOrderedEvent  extends BaseEvent<String>{
 
-    private String lineItemId;
     private String productId;
     private Boolean isDrink;
     private Long price;
@@ -18,9 +16,6 @@ public class DrinkOrderedEvent  extends BaseEvent<String>{
         this.state = state;
     }
 
-    public String getLineItemId() {
-        return lineItemId;
-    }
 
     public String getProductId() {
         return productId;

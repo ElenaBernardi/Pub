@@ -16,7 +16,7 @@ public class OrderLineItem {
 
     @EventSourcingHandler
     public void on(DrinkOrderedEvent evt){
-        this.lineItemId = evt.getLineItemId();
+        this.lineItemId = evt.getId();
         this.productId = evt.getProductId();
         this.isDrink = evt.getIsDrink();
         this.price = evt.getPrice();
@@ -30,7 +30,7 @@ public class OrderLineItem {
 
     @EventSourcingHandler
     public void on(FoodOrderedEvent evt){
-        this.lineItemId = evt.getLineItemId();
+        this.lineItemId = evt.getId();
         this.productId = evt.getProductId();
         this.isDrink = evt.getIsDrink();
         this.price = evt.getPrice();

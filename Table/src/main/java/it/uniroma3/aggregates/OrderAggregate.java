@@ -30,6 +30,10 @@ public class OrderAggregate {
 
     public OrderAggregate(){}
 
+    @CommandHandler
+    public OrderAggregate(CreateOrderCommand cmd){
+        apply(new TableOpenedEvent(cmd.getId(), cmd.getTableNumber(), cmd.getWaiter(), cmd.getOpen()));
+    }
     @EventSourcingHandler
     public void on(TableOpenedEvent evt){
         this.id = evt.getId();
@@ -42,16 +46,12 @@ public class OrderAggregate {
         this.isOpen = evt.getIsOpen();
     }
     @CommandHandler
-    public void on(CreateOrderCommand cmd){
-        apply(new TableOpenedEvent(cmd.getId(), cmd.getTableNumber(), cmd.getWaiter(), cmd.getOpen()));
-    }
-    @CommandHandler
     public void on(DrinkOrderedCommand cmd){
-        apply(new DrinkOrderedEvent(cmd.getLineItemId(),cmd.getProductId(),cmd.getIsDrink(),cmd.getPrice(), cmd.getState()));
+        apply(new DrinkOrderedEvent(cmd.getId(),cmd.getProductId(),cmd.getIsDrink(),cmd.getPrice(), cmd.getState()));
     }
     @CommandHandler
     public void on(FoodOrderedCommand cmd){
-        apply(new FoodOrderedEvent(cmd.getLineItemId(),cmd.getProductId(),cmd.getIsDrink(),cmd.getPrice(),cmd.getState()));
+        apply(new FoodOrderedEvent(cmd.getId(),cmd.getProductId(),cmd.getIsDrink(),cmd.getPrice(),cmd.getState()));
     }
     @CommandHandler
     public void on(CloseTableCommand cmd){

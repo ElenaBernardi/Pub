@@ -2,5 +2,5 @@
 
 docker-compose build
 
-docker-compose up -d axonServer
+docker-compose up -d axonserver postgres
 docker-compose up

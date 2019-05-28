@@ -1,4 +1,4 @@
-package it.uniroma3.aggregates;
+package it.uniroma3.events;
 
 public enum Status {
     DRINK_TO_SERVE,

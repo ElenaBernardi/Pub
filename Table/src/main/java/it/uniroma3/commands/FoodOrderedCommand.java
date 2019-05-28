@@ -1,9 +1,8 @@
 package it.uniroma3.commands;
 
-import it.uniroma3.aggregates.Status;
+import it.uniroma3.events.Status;
 
 public class FoodOrderedCommand extends BaseCommand<String>{
-    private String lineItemId;
     private String productId;
     private Boolean isDrink;
     private Long price;
@@ -15,10 +14,6 @@ public class FoodOrderedCommand extends BaseCommand<String>{
         this.isDrink = false;
         this.price = price;
         this.state = Status.FOOD_TO_PREPARE;
-    }
-
-    public String getLineItemId() {
-        return lineItemId;
     }
 
     public String getProductId() {

@@ -11,9 +11,13 @@ public class BaseCommand<T> {
     //l'istanza dell'aggregato che deve gestire il comando
     //può essere posta nel campo o nel getter method
     @TargetAggregateIdentifier
-    public final T id;
+    private final T id;
 
     public BaseCommand(T id){
         this.id = id;
+    }
+
+    public T getId() {
+        return id;
     }
 }
